@@ -6,6 +6,11 @@ from classes.guest import Guest
 class TestRoom(unittest.TestCase):
     def setUp(self):
         self.room1 = Room("CCC_01", 5, 4.00)
+        self.guest1 = Guest("Linda", 30, 50.00)
+        self.guest2 = Guest("Bob", 39, 70.00)
+        self.song1 = Song("Wannabe", "Spice Girls")
+        self.song2 = Song("I kissed a girl", "Katy Perry")
+        
     
     def test_room_has_name(self):
         self.assertEqual("CCC_01", self.room1.name)
@@ -15,3 +20,28 @@ class TestRoom(unittest.TestCase):
     
     def test_room_has_entry_fee(self):
         self.assertEqual(4.00, self.room1.entry_fee)
+
+    def test_add_guest_to_room(self):
+        self.room1.add_guest_to_room(self.guest1)
+        self.assertEqual(1, len(self.room1.guests_in_room))
+
+    def test_charge_guest_entry_fee_add_balance(self):
+        self.room1.charge_guest_entry_fee(self.guest1)
+        self.assertEqual(4.00, self.room1.room_balance)
+    
+    def test_charge_guest_entry_fee_lower_wallet(self):
+        self.room1.charge_guest_entry_fee(self.guest1)
+        self.assertEqual(46.00, self.guest1.wallet)
+    
+    def test_check_in_guest(self):
+        self.room1.check_in_guest(self.guest2)
+        self.assertEqual(4, self.room1.capacity)
+    
+    def test_check_in_guest_no_capacity(self):
+        self.room1.capacity = 0
+        self.assertEqual("Sorry, this room is full", self.room1.check_in_guest(self.guest2))
+
+    def test_check_out_guest(self):
+        self.room1.guests_in_room = [self.guest1, self.guest2]
+        self.room1.check_out_guest_by_name("Linda")
+        self.assertEqual(1, len(self.room1.guests_in_room))
