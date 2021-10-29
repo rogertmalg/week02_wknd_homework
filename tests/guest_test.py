@@ -14,3 +14,6 @@ class TestGuest(unittest.TestCase):
         self.assertEqual(30, self.guest1.age)
         self.assertEqual(39, self.guest2.age)
     
+    def test_guest_has_wallet(self):
+        self.assertEqual(50.00, self.guest1.wallet)
+        self.assertEqual(70.00, self.guest2.wallet)
