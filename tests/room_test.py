@@ -7,9 +7,9 @@ from classes.guest import Guest
 class TestRoom(unittest.TestCase):
     def setUp(self):
         self.room1 = Room("CCC_01", 5, 4.00)
-        self.guest1 = Guest("Linda", 30, 50.00)
-        self.guest2 = Guest("Bob", 39, 70.00)
-        self.guest3 = Guest("Tina", 13, 3.00)
+        self.guest1 = Guest("Linda", 30, 50.00, "Wannabe")
+        self.guest2 = Guest("Bob", 39, 70.00, "Last Friday night")
+        self.guest3 = Guest("Tina", 13, 3.00, "Quirky turkey")
         self.song1 = Song("Wannabe", "Spice Girls")
         self.song2 = Song("I kissed a girl", "Katy Perry")
         self.song3 = Song("Last Friday night", "Katy Perry")
@@ -72,10 +72,10 @@ class TestRoom(unittest.TestCase):
         self.room1.remove_song_by_name("Wannabe")
         self.assertEqual(2, len(self.room1.play_list))
         
-    # def test_remove_song_by_singer_name(self):
-    #     self.room1.play_list = [self.song1, self.song2, self.song3]
-    #     self.room1.remove_song_by_singer("Katy Perry")
-    #     self.assertEqual(1, len(self.room1.play_list))
+    def test_remove_song_by_singer_name(self):
+        self.room1.play_list = [self.song1, self.song2, self.song3]
+        self.room1.remove_song_by_singer("Katy Perry")
+        self.assertEqual(1, len(self.room1.play_list))
 
-    # cant get this to work properly 
+    
     
