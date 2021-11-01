@@ -77,5 +77,13 @@ class TestRoom(unittest.TestCase):
         self.room1.remove_song_by_singer("Katy Perry")
         self.assertEqual(1, len(self.room1.play_list))
 
+    def test_fave_song_cheer_in_list(self): 
+        self.room1.play_list = [self.song1, self.song2, self.song3]
+        self.assertEqual("Whoooo", self.room1.fave_song_cheer(self.guest1))
+
+    def test_fave_song_cheer_not_in_list(self): 
+        self.room1.play_list = [self.song1, self.song2, self.song3]
+        self.assertEqual(None, self.room1.fave_song_cheer(self.guest3))
+
     
     
