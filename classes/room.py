@@ -45,7 +45,7 @@ class Room:
         
 
     def remove_song_by_singer(self, singer_name):
-        [self.play_list.remove(song) for song in self.play_list[::1] 
+        [self.play_list.remove(song) for song in self.play_list[::-1] 
         if song.singer == singer_name]
 
     def fave_song_cheer(self, guest):
